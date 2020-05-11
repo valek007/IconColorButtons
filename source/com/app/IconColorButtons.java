@@ -41,24 +41,23 @@ public class IconColorButtons{
 			add(new JButton(actYellow));
 			add(new JButton(actGreen));
 		}
-	}
 
-	static class ActionColor extends AbstractAction{
+		private class ActionColor extends AbstractAction{
 
-		public ActionColor(String name, Icon icon, Color color_b){
+			public ActionColor(String name, Icon icon, Color color_b){
 
-			putValue(Action.NAME, name);
-			putValue(Action.SMALL_ICON, icon);
-			putValue(Action.SHORT_DESCRIPTION, "Changing background color to " + name);
-			putValue("background_color", color_b);
+				putValue(Action.NAME, name);
+				putValue(Action.SMALL_ICON, icon);
+				putValue(Action.SHORT_DESCRIPTION, "Changing background color to " + name);
+				putValue("background_color", color_b);
 
+			}
+
+			public void actionPerformed(ActionEvent e){
+
+				Color myColor = (Color) getValue("background_color");
+				setBackground(myColor);
+			}
 		}
-
-		public void actionPerformed(ActionEvent e){
-
-		}
-
-
 	}
-
 }
