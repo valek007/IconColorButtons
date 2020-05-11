@@ -40,6 +40,26 @@ public class IconColorButtons{
 			add(new JButton(actRed));
 			add(new JButton(actYellow));
 			add(new JButton(actGreen));
+
+			//---------Creating Keys Snippets---------------------------------
+
+			//---Step 1: creating a map entry--------------------
+			InputMap entryMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+			//---Step 2: Creating a key combination--------------
+			KeyStroke redKey = KeyStroke.getKeyStroke("ctrl R");
+			KeyStroke yellowKey = KeyStroke.getKeyStroke("ctrl Y");
+			KeyStroke greenKey = KeyStroke.getKeyStroke("ctrl G");
+			//---Step 3: Add the keys combination in the object--
+			entryMap.put(redKey, "red_background");
+			entryMap.put(yellowKey, "yellow_background");
+			entryMap.put(greenKey, "green_background");
+			//---Step 4: Add the object in the action------------
+			ActionMap actionMap = getActionMap();
+			actionMap.put("red_background",actRed);
+			actionMap.put("yellow_background",actYellow);
+			actionMap.put("green_background",actGreen);
+
+			//----------------------------------------------------------------
 		}
 
 		private class ActionColor extends AbstractAction{
@@ -57,7 +77,10 @@ public class IconColorButtons{
 
 				Color myColor = (Color) getValue("background_color");
 				setBackground(myColor);
+
 			}
+
+		
 		}
 	}
 }
