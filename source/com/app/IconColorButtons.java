@@ -15,6 +15,7 @@ public class IconColorButtons{
 	static class MyFrame extends JFrame{
 
 		private MyPanel panel = new MyPanel();
+		
 
 		public MyFrame(){
 
@@ -23,23 +24,41 @@ public class IconColorButtons{
 			setBounds(600,200,400,300);
 			setResizable(false);
 			add(panel);
+			setJMenuBar(MyPanel.menuBar);
 			setVisible(true);
-
 		}
-
 	}
 
 	static class MyPanel extends JPanel{
 
+		private static JMenuBar menuBar = new JMenuBar();
+		private JMenu menu = new JMenu("Color");
 		private ActionColor actRed = new ActionColor("Red", new ImageIcon("com/app/resources/red.png"),Color.red);
 		private ActionColor actYellow = new ActionColor("Yellow", new ImageIcon("com/app/resources/yellow.png"),Color.yellow);
 		private ActionColor actGreen = new ActionColor("Green", new ImageIcon("com/app/resources/green.png"),Color.green);
+		private AbstractAction exit = new AbstractAction("Exit", new ImageIcon("com/app/resources/exit.png")){
+				
+			@Override
+			public void actionPerformed(ActionEvent e){
+				System.exit(0);
+			}
+		};
+
+		private JToolBar toolBar = new JToolBar();
 
 		public MyPanel(){
 
-			add(new JButton(actRed));
-			add(new JButton(actYellow));
-			add(new JButton(actGreen));
+			menu.add(actRed);
+			menu.add(actYellow);
+			menu.add(actGreen);
+			menuBar.add(menu);
+
+			toolBar.add(actRed);
+			toolBar.add(actYellow);
+			toolBar.add(actGreen);
+			toolBar.addSeparator();
+			toolBar.add(exit);
+			add(toolBar, BorderLayout.NORTH);
 
 			//---------Creating Keys Snippets---------------------------------
 
